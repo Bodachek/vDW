@@ -1,0 +1,90 @@
+/* chart animations */
+/*
+@-webkit-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -40px;
+  }
+}
+@-moz-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -40px;
+  }
+}
+@-ms-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -40px;
+  }
+}
+@keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -40px;
+  }
+}
+*/
+
+.ct-series-a .ct-line {
+    stroke: #ef5b5b;
+    stroke-dasharray: 2px;
+}
+
+.ct-series-b .ct-line {
+    stroke: #f2aa48;
+    stroke-dasharray: 2px;
+}
+
+.ct-series-c .ct-line {
+    stroke: #ffe100;
+    stroke-dasharray: 2px;
+}
+
+.ct-series-d .ct-line {
+    stroke: #83f262;
+}
+
+.ct-series-d .ct-area {
+    fill: #83f262;
+}
+
+.container > .ct-chart .ct-grid {
+  stroke: rgba(0, 0, 0, 0.0);
+}
+
+
+@media screen and (min-width: 300px) {
+/* Make the lines smaller on a smaller screen*/
+    .ct-line {
+        stroke-width: 1px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+/* Make the lines wider on a larger screen*/
+    .ct-line{
+        stroke-width: 2px;
+    }
+    
+    /* animated dash series */
+    /* .container > .ct-chart .ct-series.ct-series-d .ct-line {
+      transform: translate3d(0,0,0);
+      -webkit-transform: translate3d(0,0,0);
+
+      stroke-dasharray: 5px;
+      -webkit-animation: dashoffset 10s linear infinite;
+      -moz-animation: dashoffset 10s linear infinite;
+      -o-animation: dashoffset 10s linear infinite;
+      animation: dashoffset 10s linear infinite;
+    }
+    */
+}

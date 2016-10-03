@@ -1,0 +1,258 @@
+/* chart animations */
+
+@-webkit-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -60px;
+  }
+}
+@-moz-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -60px;
+  }
+}
+@-ms-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -60px;
+  }
+}
+@keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+  100% {
+    stroke-dashoffset: -60px;
+  }
+}
+
+
+.dataBlock {
+    margin-left: 5px; 
+    margin-right: 5px;
+}
+
+.hideAll {
+/*    visibility: hidden !important;*/
+    opacity: 0;
+    
+    -webkit-transition: opacity 600ms ease-out;
+       -moz-transition: opacity 600ms ease-out;
+        -ms-transition: opacity 600ms ease-out;
+         -o-transition: opacity 600ms ease-out;
+            transition: opacity 600ms ease-out;
+}
+
+.preview {
+    height: 100px;
+    margin-bottom: 15px;
+}   
+
+.fullItem {
+    height: 580px;
+    margin-bottom: 15px;
+    background: white;    
+/*  Put the full item to a fixed place on the screen*/
+    position: absolute;
+    bottom: 10px;
+/*  And force it to have the proper z-index*/
+    z-index: 1;
+    
+    -webkit-transition: all 400ms ease-out;
+       -moz-transition: all 400ms ease-out;
+        -ms-transition: all 400ms ease-out;
+         -o-transition: all 400ms ease-out;
+            transition: all 400ms ease-out;
+}
+
+.dataNameRow, .dataName {
+    height: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.dataName {
+    border-left: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+}
+
+
+.preview .dataChangeHint {
+    height: 40px;
+    border-bottom: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+}
+
+.fullItem .dataChangeHint, .preview .dataTimeHint, .preview .dataGraphFull, .preview .dataCurrent, .preview .dataPrevious, .preview .dataCurrCount, .preview .dataPrevCount, .preview .dataPercDiff, .preview .dataPMDiff, .preview .dataNav {
+    visibility: hidden;
+    height: 0px;
+    overflow: hidden;
+    border: 0px;
+    min-height: 0px;
+}
+
+.fullItem .dataTimeHint {
+    height: 40px;
+    border-left: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/*
+.preview .dataNav {
+    min-height: 0px;
+}
+*/
+
+.fullItem .dataNav {
+    height: 100px;
+    border-right: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.preview .dataGraphPrev {
+    height: 100px;
+    border-right: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.dataGraphPrev {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.fullItem .dataGraphPrev {
+    visibility: hidden;
+    height: 0px;
+    min-height: 0px !important;
+    overflow: hidden;
+}
+
+.dataGraphPrev>.ct-chart {
+    top: -21px;
+}
+
+.dataGraphFull>.ct-chart {
+    width: 400px;
+    margin-left: 1px;
+    margin-top: 17px;
+}
+
+.prevSeriesA {
+    stroke: #5bd8ef !important;
+    stroke-width: 5px !important;
+}
+
+.dataGraphFull .ct-line {
+    stroke-width: 3px;
+    stroke-dashoffset: 100;
+    stroke-dasharray: 5px;
+    
+    -webkit-transform: translate3d(0,0,0);
+       -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+         -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+    
+    -webkit-animation: dashoffset 10s linear infinite;
+       -moz-animation: dashoffset 10s linear infinite;
+        -ms-animation: dashoffset 10s linear infinite;
+         -o-animation: dashoffset 10s linear infinite;
+            animation: dashoffset 10s linear infinite;
+}
+
+.prevSeriesB {
+    stroke: rgba(0,0,0,0);
+    fill: #489df2;
+}
+
+
+.prevSeriesC {
+    stroke: rgba(0,0,0,0);
+    stroke-dasharray: 2px;
+}
+
+
+.fullItem .dataGraphFull {
+    height: 260px;
+    border-bottom: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+.fullItem .dataCurrent {
+    height: 40px;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+}
+
+
+.fullItem .dataPrevious {
+    height: 40px;
+    border-right: 1px solid #e0e0e0;
+}
+
+
+.fullItem .dataCurrCount {
+    height: 90px;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.fullItem .dataPrevCount {
+    height: 90px;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.fullItem .dataPercDiff {
+    height: 90px;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.fullItem .dataPMDiff {
+    height: 90px;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/*
+		-webkit-transition: all 70ms ease-out;
+		   -moz-transition: all 70ms ease-out;
+		    -ms-transition: all 70ms ease-out;
+		     -o-transition: all 70ms ease-out;
+		        transition: all 70ms ease-out;
+*/ 
+	
+/*
+
+	-webkit-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	   -moz-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	    -ms-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	     -o-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	        transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);	
+*/
+
+/*
+.menu-splitL li:nth-of-type(1){	margin-left:44px;transition-delay: 0.12s;}
+.menu-splitL li.animate:nth-of-type(1){	margin-left:0;	transition-delay: 0.0s;	}
+*/

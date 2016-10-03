@@ -1,0 +1,31 @@
+<template name="ListClients">
+  {{#IfLoggedIn}}
+    <div class="well">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Account</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Number Field</th>
+          <th>Edit</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {{#each clientsList}}
+          <tr>
+            <td>{{account}}</td>
+            <td>{{friendlyName}}</td>
+            <td>{{status}}</td>
+            <td>{{numbField}}</td>
+            <td><a href="{{pathFor 'EditClients'}}">Edit</a></td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+
+    </div>
+  {{/IfLoggedIn}}
+</template>

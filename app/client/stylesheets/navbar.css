@@ -1,0 +1,37 @@
+.navbar-inverse { background-color: #FFFFFF}
+.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { background-color: #4D4D4D}
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { background-color: #4D4D4D}
+.dropdown-menu { background-color: #FFFFFF}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-color: #4D4D4D}
+.navbar-inverse { background-image: none; }
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-image: none; }
+.navbar-inverse { border-color: #9E9E9E}
+.navbar-inverse .navbar-brand { color: #000000}
+.navbar-inverse .navbar-brand:hover { color: #030303}
+.navbar-inverse .navbar-nav>li>a { color: #000000}
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { color: #FFFFFF}
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { color: #FFFFFF}
+.navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus { color: #FFFFFF}
+.dropdown-menu>li>a { color: #000000}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { color: #FFFFFF}
+.navbar-inverse .navbar-nav>.dropdown>a .caret { border-top-color: #999999}
+.navbar-inverse .navbar-nav>.dropdown>a:hover .caret { border-top-color: #FFFFFF}
+.navbar-inverse .navbar-nav>.dropdown>a .caret { border-bottom-color: #999999}
+.navbar-inverse .navbar-nav>.dropdown>a:hover .caret { border-bottom-color: #FFFFFF}
+
+.navbar-toggle.collapsed,.navbar-toggle.collapsed:hover, .navbar-toggle.collapsed:active, .navbar-toggle.collapsed:focus, .navbar-toggle, .navbar-toggle:active, .navbar-toggle:focus, .navbar-toggle:hover  {
+    border: 0px;
+    background-color: #FFFFFF !important;
+}
+
+.navbar-toggle.collapsed .icon-bar, .navbar-toggle .icon-bar {
+    background-color: #000000 !important;
+}
+
+@media (max-width: 768px) {
+.navbar-brand {
+        transform: translateX(-50%);
+        left: 50%;
+        position: absolute;
+    }
+}
