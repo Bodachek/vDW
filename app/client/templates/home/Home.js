@@ -1,173 +1,131 @@
 Template.Home.onRendered(function() {
     
-    //Set a default value for building the chart
-    Session.set('chartBuild',{
-        client: "BigFic-200",
-        date: "Mon, 12 Sep 2016"
+    skrollr.init({
+        constants: {
+            //fill the box for a "duration" of 150% of the viewport (pause for 150%)
+            //adjust for shorter/longer pause
+            box: '100p',
+            two: '200p'
+        }
     });
     
-    Session.set('cVol', new clientVolume(Session.get('chartBuild').client, Session.get('chartBuild').date))
+    //Setup a session variable for the length of the presentation
+    Session.set('presLength',8);
     
-    var cVol = new clientVolume(Session.get('chartBuild').client, Session.get('chartBuild').date)
+    //Setup a session variable for storing our position in the presentation
+    Session.set('slidePos',0);
     
-    volumeLine = new Chartist.Line('#volumeLine', {
-      labels: cVol.times,
-      series: [{
-              name: 'posSTDV',
-              data: cVol.posStdDev
-          }, {
-              name: 'Volume Model',
-              data: cVol.model
-          }, {
-              name: 'negSTDV',
-              data: cVol.negStdDev
-          }, {
-              name: 'actualVolume',
-              data: cVol.actual
-          }
-      ]
-    }, {
-      fullWidth: true,
-      lineSmooth: Chartist.Interpolation.simple({
-        divisor: 2
-      }),
-      series: {
-         'actualVolume': {
-           showArea: true
-         } 
-      },
-      chartPadding: {
-        right: 0,
-        left: 0
-      },
-      showPoint: false,
-      axisX: {
-          labelInterpolationFnc: function(value, index) {
-            return index % 10 === 0 ? value : null;
-          },
-          offset: 0,
-          showGrid: false
-      },
-      axisY: {
-          showLabel: false,
-          offset: 0,
-          showGrid: false
-      }
+    
+    $(document).ready(function() {  
+        $("#main-content > .row").niceScroll().resize();
     });
+    
 })
 
+//Setting up listener for keypress
 
+globalHotKeys = new Hotkeys();
+
+
+//Adding the keypress listeners
+
+globalHotKeys.add({
+    combo: "right",
+    callback: function(){
+        console.log("you pressed right!")
+        x = Session.get('slidePos')
+        y = Session.get('presLength')
+        
+        //Make sure we can't go past the length of the presentation
+        if(x < y){
+            x = x + 1
+        }
+        Session.set('slidePos', x);
+        
+        //Set some variables
+        winHeight = document.body.scrollHeight-34
+        slideHeight = winHeight/Session.get('presLength')
+        currentSlide = Session.get('slidePos')
+        
+        //Doing some stupid stuff with the second slide to handle the navbar height
+        
+        window.scrollTo(0,slideHeight*currentSlide)
+        
+        //I removed the NavBar for the time being so we don't need this
+        
+//        if(currentSlide === 1 || 6){
+//            window.scrollTo(0, slideHeight*currentSlide-60)
+//        } else {
+//            window.scrollTo(0, slideHeight*currentSlide)
+//        }
+    }
+})
+
+globalHotKeys.add({
+    combo: "left",
+    callback: function(){
+        console.log("you pressed left!")
+        x = Session.get('slidePos')
+        
+        //Make sure we can't go past the beginning of the presentation
+        if(x > 0){
+            x = x-1
+        } else {
+            x = 0
+        }
+        Session.set('slidePos', x);
+        
+        //Set some variables
+        winHeight = document.body.scrollHeight-34
+        slideHeight = winHeight/Session.get('presLength')
+        currentSlide = Session.get('slidePos')
+        
+        //Doing some stupid stuff with the second slide to handle the navbar height
+        
+        window.scrollTo(0, slideHeight*currentSlide-1)
+        
+        //I removed the NavBar for the time being so we don't need this
+        
+//        if(currentSlide === 1 || 6){
+//            window.scrollTo(0, slideHeight*currentSlide-60)
+//        } else {
+//            window.scrollTo(0, slideHeight*currentSlide-1)
+//        }
+    }
+})
+
+//We need to check for scrolling to adjust our position variable
+$(window).on('scroll', function(e){
+    //Grab the distance from the top
+    x = document.body.scrollTop
+    y = document.body.scrollHeight/Session.get('presLength')
+    
+    Session.set('slidePos', Math.round(x/y))
+})
 
 Template.Home.events({
-    'change #clientPicker': function(e){
-        //Our field chooser is using friendlyName, but we need the account number
-        var accountNumber = Clients.findOne({friendlyName : e.target.value}).account
-        
-        //We want to add this to our chartBuild Session variable
-        //which of course calls for mad dickery with it being an object
-        var x = Session.get('chartBuild')
-        
-        x.client = accountNumber
-        
-        Session.set('chartBuild', x)
-        
-        //build a new clientVolume object with our new account code
-        var cChart = new clientChart(Session.get('chartBuild').client, Session.get('chartBuild').date)
-        
-        fullChart.update({
-            labels: cChart.labels,
-            series: cChart.series
-        })
-        
-        previewChart.update({
-            labels: cChart.labels,
-            series: cChart.series
-        })
-        
-//        if(!Session.get('dataFullShown')){
-//          fullChart.update({
-//            labels: cChart.labels,
-//            series: cChart.series
-//          })
-//        } else {
-//          previewChart.update({
-//            labels: cChart.labels,
-//            series: cChart.series
-//          })            
-//        }
-    },
-    'change #datePicker': function(e){
-        //Grab our set date 
-        var setDate = e.target.value;
-        
-        //We want to add this to our chartBuild Session variable
-        //which of course calls for mad dickery with it being an object
-        var x = Session.get('chartBuild')
-        
-        x.date = setDate
-        
-        Session.set('chartBuild', x)
-        
-        //build a new clientVolume object with our new date
-        var cVol = new clientVolume(Session.get('chartBuild').client, Session.get('chartBuild').date)
-        
-        console.log(cVol)
-        
-        volumeLine.update(
-            {
-                labels: cVol.times,
-                series: [{
-                    name: 'posSTDV',
-                    data: cVol.posStdDev
-                }, {
-                    name: 'Volume Model',
-                    data: cVol.model
-                }, {
-                    name: 'negSTDV',
-                    data: cVol.negStdDev
-                }, {
-                    name: 'actualVolume',
-                    data: cVol.actual
-                }]
-            }
-        )
-    }
+    
 })
 
 
 Template.Home.helpers({
-    dbClients() {
-        //grab the unique dateOf values from the database
-        var cursor = Clients.find().fetch();
-        var distinct = _.uniq(cursor, false, function(d) {return d.friendlyName});
-        var dValues = _.pluck(distinct, 'friendlyName');
-        
-        //Spacebars expects an array of objects for iteration, so let's make one!
-        var uniqueValues = []
-        
-        for(i in dValues){
-            uniqueValues.push({ friendlyName: dValues[i]})
-        }
-        
-        //return to use in the Template
-        return uniqueValues;
-    },
-    dbDates() {
-        //grab the unique dateOf values from the database
-        var cursor = Model.find().fetch();
-        var distinct = _.uniq(cursor, false, function(d) {return d.dateOf});
-        var dValues = _.pluck(distinct, 'dateOf');
-        
-        //Spacebars expects an array of objects for iteration, so let's make one!
-        var uniqueValues = []
-        
-        for(i in dValues){
-            uniqueValues.push({ dateOf: dValues[i]})
-        }
-        
-        //return to use in the Template
-        return uniqueValues;
-    }
+// Keeping this for when I build the role/user dropdowns.
+//    dbClients() {
+//        //grab the unique dateOf values from the database
+//        var cursor = Clients.find().fetch();
+//        var distinct = _.uniq(cursor, false, function(d) {return d.friendlyName});
+//        var dValues = _.pluck(distinct, 'friendlyName');
+//        
+//        //Spacebars expects an array of objects for iteration, so let's make one!
+//        var uniqueValues = []
+//        
+//        for(i in dValues){
+//            uniqueValues.push({ friendlyName: dValues[i]})
+//        }
+//        
+//        //return to use in the Template
+//        return uniqueValues;
+//    }
 });
 
 

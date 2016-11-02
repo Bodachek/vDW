@@ -1,15 +1,15 @@
-<template name="EditClients">
+<template name="EditRoles">
   {{#IfLoggedIn}}
     <div class="well">
       {{> quickForm
-      collection="Clients"
+      collection="Roles"
       template="bootstrap3-horizontal"
       label-class="col-sm-2"
       input-col-class="col-sm-10"
 
-      id="EditClientsForm"
+      id="EditRolesForm"
       type="method-update"
-      meteormethod="editClients"
+      meteormethod="editRoles"
       doc=this
       buttonContent="Update"}}
     </div>

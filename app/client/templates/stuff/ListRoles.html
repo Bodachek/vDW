@@ -1,0 +1,33 @@
+<template name="ListRoles">
+  {{#IfLoggedIn}}
+    <div class="well">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Role</th>
+          <th>Department</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {{#each rolesList}}
+          <tr>
+            <td>{{role}}</td>
+            <td>{{department}}</td>
+            <td>{{status}}</td>
+            <td>{{priority}}</td>
+            <td><a href="{{pathFor 'EditRoles'}}">Edit</a></td>
+            <td><a class="deleteRole">Delete</a></td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+
+    </div>
+  {{/IfLoggedIn}}
+</template>

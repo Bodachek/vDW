@@ -1,4 +1,4 @@
-<template name="ListClients">
+<template name="ListStaff">
   {{#IfLoggedIn}}
     <div class="well">
 
@@ -10,17 +10,19 @@
           <th>Status</th>
           <th>Number Field</th>
           <th>Edit</th>
+          <th>Delete</th>
         </tr>
         </thead>
 
         <tbody>
-        {{#each clientsList}}
+        {{#each staffList}}
           <tr>
             <td>{{account}}</td>
             <td>{{friendlyName}}</td>
             <td>{{status}}</td>
             <td>{{numbField}}</td>
-            <td><a href="{{pathFor 'EditClients'}}">Edit</a></td>
+            <td><a href="{{pathFor 'EditStaff'}}">Edit</a></td>
+            <td><a class="deleteStaff">Delete</a></td>
           </tr>
         {{/each}}
         </tbody>
