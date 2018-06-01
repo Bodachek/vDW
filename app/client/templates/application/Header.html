@@ -1,5 +1,4 @@
 <template name="Header">
-<!--
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
 
@@ -17,10 +16,8 @@
 
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
-            <li><a href="{{ pathFor 'AddRoles' }}">Add Roles</a></li>
-            <li><a href="{{ pathFor 'ListRoles' }}">List Roles</a></li>
-            <li><a href="{{ pathFor 'AddStaff' }}">Add Staff</a></li>
-            <li><a href="{{ pathFor 'ListStaff' }}">List Staff</a></li>
+            <li><a href="{{ pathFor 'AddClients' }}">Add Clients</a></li>
+            <li><a href="{{ pathFor 'ListClients' }}">List Clients</a></li>
           {{/if}}
           <li><a href="#" class="navbar-link">{{> loginButtons }}</a></li>
 
@@ -30,7 +27,4 @@
         
     </div>
   </nav>
--->
-    
-    
 </template>

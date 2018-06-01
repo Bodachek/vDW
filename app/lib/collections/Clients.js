@@ -1,53 +1,49 @@
-staff = "Staff";  // avoid typos, this string occurs many times.
+clients = "Clients";  // avoid typos, this string occurs many times.
 
-Staff = new Mongo.Collection(staff);
+Clients = new Mongo.Collection(clients);
 
 Meteor.methods({
   /**
-   * Invoked by AutoForm to add a new Staff record.
-   * @param doc The Staff document.
+   * Invoked by AutoForm to add a new Clients record.
+   * @param doc The Clients document.
    */
-  addStaff: function(doc) {
-    check(doc, Staff.simpleSchema());
-    Staff.insert(doc);
+  addClients: function(doc) {
+    check(doc, Clients.simpleSchema());
+    Clients.insert(doc);
   },
   /**
    *
-   * Invoked by AutoForm to update a Staff record.
-   * @param doc The Staff document.
+   * Invoked by AutoForm to update a Clients record.
+   * @param doc The Clients document.
    * @param docID It's ID.
    */
-  editStaff: function(doc, docID) {
-    check(doc, Staff.simpleSchema());
-    Staff.update({_id: docID}, doc);
-  },
-    
-  deleteStaff: function(docID) {
-    Staff.remove({_id: docID});
+  editClients: function(doc, docID) {
+    check(doc, Clients.simpleSchema());
+    Clients.update({_id: docID}, doc);
   }
 });
 
 // Publish the entire Collection.  Subscription performed in the router.
 if (Meteor.isServer) {
-  Meteor.publish(staff, function () {
-    return Staff.find();
+  Meteor.publish(clients, function () {
+    return Clients.find();
   });
 }
 
 
 /**
- * Create the schema for Staff
+ * Create the schema for Clients
  * See: https://github.com/aldeed/meteor-autoform#common-questions
  * See: https://github.com/aldeed/meteor-autoform#affieldinput
  */
-Staff.attachSchema(new SimpleSchema({
+Clients.attachSchema(new SimpleSchema({
   account: {
     label: "Account",
     type: String,
     optional: false,
     max: 20,
     autoform: {
-      group: staff,
+      group: clients,
       placeholder: "Account Name"
     }
   },
@@ -56,7 +52,7 @@ Staff.attachSchema(new SimpleSchema({
     type: String,
     optional: false,
     autoform: {
-      group: staff,
+      group: clients,
       placeholder: "Friendly name"
     }
   },
@@ -65,7 +61,7 @@ Staff.attachSchema(new SimpleSchema({
     type: String,
     optional: false,
     autoform: {
-      group: staff,
+      group: clients,
       placeholder: "Active"
     }
   },
@@ -74,7 +70,7 @@ Staff.attachSchema(new SimpleSchema({
     type: Number,
     optional: true,
     autoform: {
-      group: staff,
+      group: clients,
       placeholder: "5"
     }
   }    
